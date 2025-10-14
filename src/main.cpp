@@ -1,9 +1,9 @@
-#include "App.hpp"
+#include "Jsp.hpp"
 
 int main()
 {
-	App app;
+	Jsp parser;
 
-	app.run();
+	parser.run();
 	return (0);
 }

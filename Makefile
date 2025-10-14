@@ -1,9 +1,9 @@
 # ----------------------------------------Name
-NAME = app
+NAME = jsp
 
 # ----------------------------------------Files
 FILES_SRCS =	main.cpp \
-				App.cpp \
+				Jsp.cpp \
 
 FILES_OBJS = $(FILES_SRCS:.cpp=.o)
 

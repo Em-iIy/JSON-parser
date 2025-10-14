@@ -1,23 +1,23 @@
-#include "App.hpp"
+#include "Jsp.hpp"
 
 #include <iostream>
 
-App::App()
+Jsp::Jsp()
 {
 	_message = "Hello World!";
 }
 
-App::~App()
+Jsp::~Jsp()
 {
 
 }
 
-void	App::run() noexcept
+void	Jsp::run() noexcept
 {
 	_printMessage();
 }
 
-void	App::_printMessage() const noexcept
+void	Jsp::_printMessage() const noexcept
 {
 	std::cout << _message << std::endl;
 }

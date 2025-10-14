@@ -2,10 +2,10 @@
 
 #include <string>
 
-class App {
+class Jsp {
 	public:
-		App();
-		~App();
+		Jsp();
+		~Jsp();
 
 		void	run() noexcept;
 
