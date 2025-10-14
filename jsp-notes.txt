@@ -1,0 +1,20 @@
+json values:
+	string
+	number
+	json object
+	array
+	bool
+	null
+
+json tokens:
+	`"`
+	`0-9`
+	`:`
+	`,`
+	`{`
+	`}`
+	`[`
+	`]`
+	`true`
+	`false`
+	`null`
