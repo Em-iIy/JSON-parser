@@ -22,13 +22,14 @@ class Node {
 		enum class TYPES {STRING, NUMBER, OBJECT, LIST, BOOLEAN, NULLED};
 		union Values {
 			std::string	*string;
-			float		*number;
+			float		number;
 			Object		*object;
 			List		*list;
-			bool		*boolean;
+			bool		boolean;
 		};
 		TYPES			type;
-		Values			val;
+		Values			value;
+		
 };
 
 };
