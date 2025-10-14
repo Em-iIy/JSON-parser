@@ -4,6 +4,8 @@ NAME = jsp
 # ----------------------------------------Files
 FILES_SRCS =	main.cpp \
 				Jsp.cpp \
+				Parser.cpp \
+				Token.cpp \
 
 FILES_OBJS = $(FILES_SRCS:.cpp=.o)
 
