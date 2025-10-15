@@ -49,7 +49,7 @@ Token	Tokenizer::getToken()
 		ret.type = TOKEN::NUMBER;
 		ret.value += c;
 		peek = _file.peek();
-		while ((peek == '-' || peek == '.' || std::isdigit(static_cast<int>(peek))) && !_file.eof())
+		while ((peek == '-' || peek == '+' || peek == '.' || peek == 'e' || std::isdigit(static_cast<int>(peek))) && !_file.eof())
 		{
 			_file.get(c);
 			ret.value += c;
