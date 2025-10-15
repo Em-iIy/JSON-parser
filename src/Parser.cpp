@@ -12,15 +12,12 @@ namespace JSON {
 
 Parser::Parser(const std::string &filename)try : _tokenizer(filename)
 {
-	while (true)
-	{
-		Token	cur = _tokenizer.getToken();
-		if (cur.type == TOKEN::END)
-			return;
-		std::shared_ptr<Node>	node = parse(cur);
-		if (_rootNode == nullptr)
-			_rootNode = node;
-	}
+	Token	cur = _tokenizer.getToken();
+	if (cur.type == TOKEN::END)
+		return;
+	std::shared_ptr<Node>	node = parse(cur);
+	if (_rootNode == nullptr)
+		_rootNode = node;
 }
 catch(const std::runtime_error &e)
 {
