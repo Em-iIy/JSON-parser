@@ -5,6 +5,11 @@
 	"hobbies": [
 		"gaming",
 		"table tennis",
-		"programming"
+		"programming",
+		{
+			"foo": {
+				"bar": true
+			}
+		}
 	]
 }

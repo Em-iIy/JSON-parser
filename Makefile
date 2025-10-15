@@ -6,6 +6,7 @@ FILES_SRCS =	main.cpp \
 				Jsp.cpp \
 				Parser.cpp \
 				Token.cpp \
+				Node.cpp \
 
 FILES_OBJS = $(FILES_SRCS:.cpp=.o)
 

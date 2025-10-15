@@ -5,6 +5,8 @@ Created on: 14/10/2025
 
 #include "Token.hpp"
 
+#include <iostream>
+
 namespace JSON {
 
 Tokenizer::Tokenizer(const std::string &filename)
@@ -114,6 +116,7 @@ Token	Tokenizer::getToken()
 	default:
 		break ;
 	}
+	std::cout << TokenStrings.at(ret.type) << ": <" << ret.value << ">" << std::endl;
 	return (ret);
 }
 

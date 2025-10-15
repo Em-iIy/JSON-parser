@@ -17,6 +17,8 @@ class Parser {
 	public:
 		Parser(const std::string &filename);
 
+		std::shared_ptr<Node>	parse(const Token &token);
+
 		std::shared_ptr<Node>	getRoot();
 
 	private:
@@ -25,10 +27,10 @@ class Parser {
 
 		std::shared_ptr<Node>	_parseString(const Token &token);
 		std::shared_ptr<Node>	_parseNumber(const Token &token);
-		std::shared_ptr<Node>	_parseObject();
-		std::shared_ptr<Node>	_parseList();
+		std::shared_ptr<Node>	_parseObject(const Token &token);
+		std::shared_ptr<Node>	_parseList(const Token &token);
 		std::shared_ptr<Node>	_parseBoolean(const Token &token);
-		std::shared_ptr<Node>	_parseNull(const Token &token);
+		std::shared_ptr<Node>	_parseNull();
 };
 
 };

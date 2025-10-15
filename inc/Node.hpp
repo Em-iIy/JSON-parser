@@ -21,15 +21,16 @@ class Node {
 	public:
 		enum class TYPES {STRING, NUMBER, OBJECT, LIST, BOOLEAN, NULLED};
 		union Values {
-			std::string	*string;
-			float		number;
-			Object		*object;
-			List		*list;
-			bool		boolean;
+			Values(): number(nullptr) {};
+			~Values() {};
+			std::unique_ptr<std::string>	string;
+			std::unique_ptr<float>			number;
+			std::unique_ptr<Object>			object;
+			std::unique_ptr<List>			list;
+			std::unique_ptr<bool>			boolean;
 		};
 		TYPES			type;
 		Values			value;
-		
 };
 
 };
