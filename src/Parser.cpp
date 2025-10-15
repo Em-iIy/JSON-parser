@@ -15,7 +15,7 @@ Parser::Parser(const std::string &filename)try : _tokenizer(filename)
 	Token	cur = _tokenizer.getToken();
 	if (cur.type == TOKEN::END)
 		return;
-	std::shared_ptr<Node>	node = parse(cur);
+	NodePtr	node = parse(cur);
 	if (_rootNode == nullptr)
 		_rootNode = node;
 }
@@ -24,9 +24,9 @@ catch(const std::runtime_error &e)
 	throw std::runtime_error("JSON: Parser: " + std::string(e.what()));
 }
 
-std::shared_ptr<Node>	Parser::parse(const Token &token)
+NodePtr	Parser::parse(const Token &token)
 {
-	std::shared_ptr<Node>	ret = nullptr;
+	NodePtr	ret = nullptr;
 	switch (token.type)
 	{
 	case TOKEN::STRING:
@@ -66,35 +66,35 @@ std::shared_ptr<Node>	Parser::parse(const Token &token)
 }
 
 
-std::shared_ptr<Node>	Parser::getRoot()
+NodePtr	Parser::getRoot()
 {
 	return (_rootNode);
 }
 
-std::shared_ptr<Node>	Parser::_parseString(const Token &token)
+NodePtr	Parser::_parseString(const Token &token)
 {
-	std::shared_ptr<Node>	ret = std::make_shared<Node>();
+	NodePtr	ret = std::make_shared<Node>();
 	ret->type = Node::TYPES::STRING;
 	ret->value.string = std::make_shared<std::string>(token.value); // maybe do something else????
 	return ret;
 }
 
-std::shared_ptr<Node>	Parser::_parseNumber(const Token &token)
+NodePtr	Parser::_parseNumber(const Token &token)
 {
-	std::shared_ptr<Node>	ret = std::make_shared<Node>();
+	NodePtr	ret = std::make_shared<Node>();
 	ret->type = Node::TYPES::NUMBER;
 	ret->value.number = std::make_shared<float>(std::stof(token.value));
 	return ret;
 }
 
-std::shared_ptr<Node>	Parser::_parseObject(const Token &token)
+NodePtr	Parser::_parseObject(const Token &token)
 {
 	Token					prev = token;
 	Token					cur;
 	std::string				key = "";
-	std::shared_ptr<Node>	val = nullptr;
+	NodePtr	val = nullptr;
 
-	std::shared_ptr<Node>	ret = std::make_shared<Node>();
+	NodePtr	ret = std::make_shared<Node>();
 	ret->type = Node::TYPES::OBJECT;
 	ret->value.object = std::make_shared<Object>();
 	while (true)
@@ -132,13 +132,13 @@ std::shared_ptr<Node>	Parser::_parseObject(const Token &token)
 	return ret;
 }
 
-std::shared_ptr<Node>	Parser::_parseList(const Token &token)
+NodePtr	Parser::_parseList(const Token &token)
 {
 	Token					prev = token;
 	Token					cur;
-	std::shared_ptr<Node>	val = nullptr;
+	NodePtr	val = nullptr;
 
-	std::shared_ptr<Node>	ret = std::make_shared<Node>();
+	NodePtr	ret = std::make_shared<Node>();
 	ret->type = Node::TYPES::LIST;
 	ret->value.list = std::make_shared<List>();
 	while (true)
@@ -166,9 +166,9 @@ std::shared_ptr<Node>	Parser::_parseList(const Token &token)
 	return ret;
 }
 
-std::shared_ptr<Node>	Parser::_parseBoolean(const Token &token)
+NodePtr	Parser::_parseBoolean(const Token &token)
 {
-	std::shared_ptr<Node>	ret = std::make_shared<Node>();
+	NodePtr	ret = std::make_shared<Node>();
 	bool					val = true;
 	if (token.value == "false")
 		val = false;			
@@ -177,9 +177,9 @@ std::shared_ptr<Node>	Parser::_parseBoolean(const Token &token)
 	return ret;
 }
 
-std::shared_ptr<Node>	Parser::_parseNull()
+NodePtr	Parser::_parseNull()
 {
-	std::shared_ptr<Node>	ret = std::make_shared<Node>();
+	NodePtr	ret = std::make_shared<Node>();
 	ret->type = Node::TYPES::NULLED;
 	ret->value.boolean = nullptr;
 	return ret;

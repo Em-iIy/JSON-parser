@@ -16,7 +16,16 @@ int main(int argc, char **argv)
 	try
 	{
 		JSON::Parser test(argv[1]);
-		std::cout << test.getRoot()->stringify() << std::endl;
+		JSON::NodePtr root = test.getRoot();
+		std::cout << root->stringify() << std::endl;
+		std::cout << root->get("cool")->stringify() << std::endl;
+		JSON::ListPtr numbers = root->get("numbers")->getList();
+
+		std::cout << root->get("numbers")->get(1)->stringify() << std::endl;
+		for (JSON::NodePtr node : *numbers)
+		{
+			std::cout << node->stringify() << std::endl;
+		}
 	}
 	catch(const std::exception& e)
 	{

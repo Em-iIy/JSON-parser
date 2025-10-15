@@ -17,20 +17,20 @@ class Parser {
 	public:
 		Parser(const std::string &filename);
 
-		std::shared_ptr<Node>	parse(const Token &token);
+		NodePtr		parse(const Token &token);
 
-		std::shared_ptr<Node>	getRoot();
+		NodePtr		getRoot();
 
 	private:
-		Tokenizer				_tokenizer;
-		std::shared_ptr<Node>	_rootNode;
+		Tokenizer	_tokenizer;
+		NodePtr		_rootNode;
 
-		std::shared_ptr<Node>	_parseString(const Token &token);
-		std::shared_ptr<Node>	_parseNumber(const Token &token);
-		std::shared_ptr<Node>	_parseObject(const Token &token);
-		std::shared_ptr<Node>	_parseList(const Token &token);
-		std::shared_ptr<Node>	_parseBoolean(const Token &token);
-		std::shared_ptr<Node>	_parseNull();
+		NodePtr		_parseString(const Token &token);
+		NodePtr		_parseNumber(const Token &token);
+		NodePtr		_parseObject(const Token &token);
+		NodePtr		_parseList(const Token &token);
+		NodePtr		_parseBoolean(const Token &token);
+		NodePtr		_parseNull();
 };
 
 };

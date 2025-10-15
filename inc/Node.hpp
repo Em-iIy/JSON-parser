@@ -14,8 +14,11 @@ namespace JSON {
 
 class Node;
 
-using Object = std::map<std::string, std::shared_ptr<Node>>;
-using List = std::vector<std::shared_ptr<Node>>;
+using NodePtr = std::shared_ptr<Node>;
+using Object = std::map<std::string, NodePtr>;
+using ObjectPtr = std::shared_ptr<Object>;
+using List = std::vector<NodePtr>;
+using ListPtr = std::shared_ptr<List>;
 
 class Node {
 	public:
@@ -29,22 +32,32 @@ class Node {
 			std::shared_ptr<List>			list;
 			std::shared_ptr<bool>			boolean;
 		};
-		TYPES			type;
-		Values			value;
+		TYPES					type;
+		Values					value;
 
-		std::string		stringify(int indent = 0);
+		std::string				stringify(int indent = 0);
 	
-		Node::TYPES		getType() const;
+		Node::TYPES				getType() const;
 
-		std::string		getString();
-		float			getNumber();
-		bool			getBool();
-		bool			isNull();
+		std::string				getString();
+		float					getNumber();
+		std::shared_ptr<Object>	getObject();
+		std::shared_ptr<List>	getList();
+		bool					getBool();
+		bool					isNull();
+
+		NodePtr					get(const std::string &key);
+		NodePtr					get(std::size_t index);
+
+		NodePtr					operator[](std::size_t index);
 
 	private:
-		std::string		_stringifyObject(int indent);
-		std::string		_stringifyList(int indent);
-		std::string		_stringifyType();
+		std::string				_stringifyObject(int indent);
+		std::string				_stringifyList(int indent);
+
+		std::string				_accessErrorMessage(TYPES target);
+		std::string				_accessErrorMessage(const std::string &key);
+		std::string				_accessErrorMessage(std::size_t index);
 };
 
 const std::map<Node::TYPES, std::string> TypeStrings {

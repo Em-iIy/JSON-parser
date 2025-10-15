@@ -68,7 +68,7 @@ std::string	Node::_stringifyList(int indent)
 	if (len > 0)
 	{
 		ret += "\n";
-		for (std::shared_ptr<Node> &val : *value.list)
+		for (NodePtr &val : *value.list)
 		{
 			ret += std::string(indent + 1, '\t');
 			ret += val->stringify(indent + 1);
@@ -91,39 +91,83 @@ Node::TYPES	Node::getType() const
 std::string	Node::getString()
 {
 	if (type != TYPES::STRING)
-	{
-		std::string errorMsg = "JSON: access: wrong type - expected: `" + TypeStrings.at(TYPES::STRING) + "` found:\t`" + TypeStrings.at(type) + "` -> ";
-		errorMsg += stringify(7);
-		throw std::runtime_error(errorMsg);
-	}
+		throw std::runtime_error(_accessErrorMessage(TYPES::STRING));
 	return (*value.string);
 }
 
 float	Node::getNumber()
 {
 	if (type != TYPES::NUMBER)
-	{
-		std::string errorMsg = "JSON: access: wrong type - expected: `" + TypeStrings.at(TYPES::NUMBER) + "` found:\t`" + TypeStrings.at(type) + "` -> ";
-		errorMsg += stringify(7);
-		throw std::runtime_error(errorMsg);
-	}
+		throw std::runtime_error(_accessErrorMessage(TYPES::NUMBER));
 	return (*value.number);
+}
+
+std::shared_ptr<Object>	Node::getObject()
+{
+	if (type != TYPES::OBJECT)
+		throw std::runtime_error(_accessErrorMessage(TYPES::OBJECT));
+	return (value.object);
+}
+
+std::shared_ptr<List>	Node::getList()
+{
+	if (type != TYPES::LIST)
+		throw std::runtime_error(_accessErrorMessage(TYPES::LIST));
+	return (value.list);
 }
 
 bool	Node::getBool()
 {
 	if (type != TYPES::BOOLEAN)
-	{
-		std::string errorMsg = "JSON: access: wrong type - expected: `" + TypeStrings.at(TYPES::BOOLEAN) + "` found:\t`" + TypeStrings.at(type) + "` -> ";
-		errorMsg += stringify(7);
-		throw std::runtime_error(errorMsg);
-	}
+		throw std::runtime_error(_accessErrorMessage(TYPES::BOOLEAN));
 	return (*value.boolean);
 }
 
 bool	Node::isNull()
 {
 	return (type == TYPES::NULLED);
+}
+
+NodePtr	Node::get(const std::string &key)
+{
+	if (type != TYPES::OBJECT)
+		throw std::runtime_error(_accessErrorMessage(TYPES::OBJECT));
+	if (!value.object->contains(key))
+		throw std::runtime_error(_accessErrorMessage(key));
+	return (value.object->at(key));
+}
+
+NodePtr	Node::get(std::size_t index)
+{
+	return ((*this)[index]);
+}
+
+NodePtr	Node::operator[](std::size_t index)
+{
+	if (index >= value.list->size())
+		throw std::runtime_error(_accessErrorMessage(index));
+	return ((*value.list)[index]);
+}
+
+std::string				Node::_accessErrorMessage(TYPES target)
+{
+	std::string errorMsg = "JSON: access: wrong type - expected: `" + TypeStrings.at(target) + "` found:\t`" + TypeStrings.at(type) + "` -> ";
+	errorMsg += stringify(1);
+	return (errorMsg);
+}
+
+std::string				Node::_accessErrorMessage(const std::string &key)
+{
+	std::string errorMsg = "JSON: access: key `" + key + "` not found - \t`" + TypeStrings.at(type) + "` -> ";
+	errorMsg += stringify(1);
+	return (errorMsg);
+}
+
+std::string				Node::_accessErrorMessage(std::size_t index)
+{
+	std::string errorMsg = "JSON: access: index `" + std::to_string(index) + "` out of range - \t`" + TypeStrings.at(type) + "` -> ";
+	errorMsg += stringify(1);
+	return (errorMsg);
 }
 
 }
