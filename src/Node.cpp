@@ -41,17 +41,21 @@ std::string	Node::_stringifyObject(int indent)
 {
 	std::size_t	i = 0;
 	std::size_t	len = value.object->size();
-	std::string	ret ="{\n";
-	for (auto &[key, val] : *value.object)
+	std::string	ret ="{";
+	if (len > 0)
 	{
-		ret += std::string(indent + 1, '\t');
-		ret += "\"" + key + "\": " + val->stringify(indent + 1);
-		i++;
-		if (i < len)
-			ret += ",";
 		ret += "\n";
+		for (auto &[key, val] : *value.object)
+		{
+			ret += std::string(indent + 1, '\t');
+			ret += "\"" + key + "\": " + val->stringify(indent + 1);
+			i++;
+			if (i < len)
+				ret += ",";
+			ret += "\n";
+		}
+		ret += std::string(indent, '\t');
 	}
-	ret += std::string(indent, '\t');
 	ret += "}";
 	return (ret);
 }
@@ -60,17 +64,21 @@ std::string	Node::_stringifyList(int indent)
 {
 	std::size_t	i = 0;
 	std::size_t	len = value.list->size();
-	std::string	ret = "[\n";
-	for (std::shared_ptr<Node> &val : *value.list)
+	std::string	ret ="[";
+	if (len > 0)
 	{
-		ret += std::string(indent + 1, '\t');
-		ret += val->stringify(indent + 1);
-		i++;
-		if (i < len)
-			ret += ",";
 		ret += "\n";
+		for (std::shared_ptr<Node> &val : *value.list)
+		{
+			ret += std::string(indent + 1, '\t');
+			ret += val->stringify(indent + 1);
+			i++;
+			if (i < len)
+				ret += ",";
+			ret += "\n";
+		}
+		ret += std::string(indent, '\t');
 	}
-	ret += std::string(indent, '\t');
 	ret += "]";
 	return (ret);
 }
