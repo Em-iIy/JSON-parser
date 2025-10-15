@@ -61,5 +61,5 @@ re: fclean all
 
 # ----------------------------------------Util
 lines:
-	wc -l main.cpp src/*.cpp inc/*.hpp
+	wc -l src/*.cpp inc/*.hpp
 .PHONY: lines
