@@ -19,6 +19,7 @@ Tokenizer::Tokenizer(const std::string &filename)
 Token	Tokenizer::getToken()
 {
 	char			c;
+	char			peek;
 	Token			ret;
 	// std::streampos	start = _file.tellg();
 	
@@ -46,11 +47,13 @@ Token	Tokenizer::getToken()
 		break ;
 	case '-': case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
 		ret.type = TOKEN::NUMBER;
-		_file.get(c);
-		while ((c == '-' || c == '.' || std::isdigit(static_cast<int>(c))) && !_file.eof())
+		ret.value += c;
+		peek = _file.peek();
+		while ((peek == '-' || peek == '.' || std::isdigit(static_cast<int>(peek))) && !_file.eof())
 		{
-			ret.value += c;
 			_file.get(c);
+			ret.value += c;
+			peek = _file.peek();
 		}
 		break ;
 	case ':':
