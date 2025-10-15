@@ -32,11 +32,11 @@ class Node {
 		TYPES			type;
 		Values			value;
 
-		std::string		stringify();
+		std::string		stringify(int indent = 0);
 	
 	private:
-		std::string		_stringifyObject();
-		std::string		_stringifyList();
+		std::string		_stringifyObject(int indent);
+		std::string		_stringifyList(int indent);
 };
 
 };

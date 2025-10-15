@@ -16,6 +16,7 @@ int main(int argc, char **argv)
 	try
 	{
 		JSON::Parser test(argv[1]);
+		std::cout << test.getRoot()->stringify() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
