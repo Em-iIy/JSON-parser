@@ -119,7 +119,7 @@ Token	Tokenizer::getToken()
 	default:
 		break ;
 	}
-	std::cout << TokenStrings.at(ret.type) << ": <" << ret.value << ">" << std::endl;
+	// std::cout << TokenStrings.at(ret.type) << ": <" << ret.value << ">" << std::endl;
 	return (ret);
 }
 
