@@ -1,0 +1,29 @@
+{
+  "integers": {
+    "zero": 0,
+    "positive": 123,
+    "negative": -456,
+    "large": 9876543210
+  },
+  "floats": {
+    "simple": 3.14,
+    "negative": -0.001,
+    "no_leading_zero": 0.5,
+    "trailing_zero": 2.0,
+    "large_fraction": 12345.678901
+  },
+  "exponents": {
+    "positive_exponent": 1.23e4,
+    "negative_exponent": 5.67E-8,
+    "with_signs": -9.99e+3,
+    "small_number": 7e-10,
+    "large_number": 6.02E23
+  },
+  "edge_cases": {
+    "just_negative_zero": -0,
+    "tiny_fraction": 0.0000000000001,
+    "huge_number": 1000000000000000000000000,
+    "scientific_notation_lower_e": 1e5,
+    "scientific_notation_upper_E": 1E5
+  }
+}

@@ -6,6 +6,7 @@ Created on: 14/10/2025
 #include "Token.hpp"
 
 #include <iostream>
+#include <regex>
 
 namespace JSON {
 
@@ -49,12 +50,14 @@ Token	Tokenizer::getToken()
 		ret.type = TOKEN::NUMBER;
 		ret.value += c;
 		peek = _file.peek();
-		while ((peek == '-' || peek == '+' || peek == '.' || peek == 'e' || std::isdigit(static_cast<int>(peek))) && !_file.eof())
+		while ((peek == '-' || peek == '+' || peek == '.' || peek == 'e' || peek == 'E' || std::isdigit(static_cast<int>(peek))) && !_file.eof())
 		{
 			_file.get(c);
 			ret.value += c;
 			peek = _file.peek();
 		}
+		if (!validateNumber(ret.value))
+			ret.type = TOKEN::END;
 		break ;
 	case ':':
 		ret.type = TOKEN::COLON;
@@ -127,6 +130,14 @@ Tokenizer::~Tokenizer()
 {
 	if (_file.is_open())
 		_file.close();
+}
+
+bool	validateNumber(const std::string &num)
+{
+	static const std::regex	numRegex(
+		R"(^-?(0|[1-9]\d*)(\.\d+)?([eE][+\-]?\d+)?$)"
+	);
+	return (std::regex_match(num, numRegex));
 }
 
 }

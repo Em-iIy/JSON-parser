@@ -32,8 +32,8 @@ class Node {
 			std::shared_ptr<List>			list;
 			std::shared_ptr<bool>			boolean;
 		};
-		TYPES					type;
-		Values					value;
+		TYPES					type; // make private
+		Values					value; // make private
 
 		std::string				stringify(int indent = 0);
 	

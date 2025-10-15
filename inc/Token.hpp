@@ -56,4 +56,6 @@ class Tokenizer {
 		std::fstream	_file;
 };
 
+bool	validateNumber(const std::string &num);
+
 }
