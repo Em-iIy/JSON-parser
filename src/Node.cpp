@@ -83,4 +83,47 @@ std::string	Node::_stringifyList(int indent)
 	return (ret);
 }
 
+Node::TYPES	Node::getType() const
+{
+	return (type);
+}
+
+std::string	Node::getString()
+{
+	if (type != TYPES::STRING)
+	{
+		std::string errorMsg = "JSON: access: wrong type - expected: `" + TypeStrings.at(TYPES::STRING) + "` found:\t`" + TypeStrings.at(type) + "` -> ";
+		errorMsg += stringify(7);
+		throw std::runtime_error(errorMsg);
+	}
+	return (*value.string);
+}
+
+float	Node::getNumber()
+{
+	if (type != TYPES::NUMBER)
+	{
+		std::string errorMsg = "JSON: access: wrong type - expected: `" + TypeStrings.at(TYPES::NUMBER) + "` found:\t`" + TypeStrings.at(type) + "` -> ";
+		errorMsg += stringify(7);
+		throw std::runtime_error(errorMsg);
+	}
+	return (*value.number);
+}
+
+bool	Node::getBool()
+{
+	if (type != TYPES::BOOLEAN)
+	{
+		std::string errorMsg = "JSON: access: wrong type - expected: `" + TypeStrings.at(TYPES::BOOLEAN) + "` found:\t`" + TypeStrings.at(type) + "` -> ";
+		errorMsg += stringify(7);
+		throw std::runtime_error(errorMsg);
+	}
+	return (*value.boolean);
+}
+
+bool	Node::isNull()
+{
+	return (type == TYPES::NULLED);
+}
+
 }

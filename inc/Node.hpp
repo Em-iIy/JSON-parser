@@ -34,9 +34,26 @@ class Node {
 
 		std::string		stringify(int indent = 0);
 	
+		Node::TYPES		getType() const;
+
+		std::string		getString();
+		float			getNumber();
+		bool			getBool();
+		bool			isNull();
+
 	private:
 		std::string		_stringifyObject(int indent);
 		std::string		_stringifyList(int indent);
+		std::string		_stringifyType();
+};
+
+const std::map<Node::TYPES, std::string> TypeStrings {
+	{Node::TYPES::STRING, "STRING"}, 
+	{Node::TYPES::NUMBER, "NUMBER"}, 
+	{Node::TYPES::OBJECT, "OBJECT"}, 
+	{Node::TYPES::LIST, "LIST"}, 
+	{Node::TYPES::BOOLEAN, "BOOLEAN"}, 
+	{Node::TYPES::NULLED, "NULLED"},
 };
 
 };
