@@ -22,15 +22,21 @@ class Node {
 		enum class TYPES {STRING, NUMBER, OBJECT, LIST, BOOLEAN, NULLED};
 		union Values {
 			Values(): number(nullptr) {};
-			~Values() {};
-			std::unique_ptr<std::string>	string;
-			std::unique_ptr<float>			number;
-			std::unique_ptr<Object>			object;
-			std::unique_ptr<List>			list;
-			std::unique_ptr<bool>			boolean;
+			~Values() {number = nullptr;};
+			std::shared_ptr<std::string>	string;
+			std::shared_ptr<float>			number;
+			std::shared_ptr<Object>			object;
+			std::shared_ptr<List>			list;
+			std::shared_ptr<bool>			boolean;
 		};
 		TYPES			type;
 		Values			value;
+
+		std::string		stringify();
+	
+	private:
+		std::string		_stringifyObject();
+		std::string		_stringifyList();
 };
 
 };

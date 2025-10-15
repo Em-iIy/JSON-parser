@@ -75,7 +75,7 @@ std::shared_ptr<Node>	Parser::_parseString(const Token &token)
 {
 	std::shared_ptr<Node>	ret = std::make_shared<Node>();
 	ret->type = Node::TYPES::STRING;
-	ret->value.string = std::make_unique<std::string>(token.value); // maybe do something else????
+	ret->value.string = std::make_shared<std::string>(token.value); // maybe do something else????
 	return ret;
 }
 
@@ -83,7 +83,7 @@ std::shared_ptr<Node>	Parser::_parseNumber(const Token &token)
 {
 	std::shared_ptr<Node>	ret = std::make_shared<Node>();
 	ret->type = Node::TYPES::NUMBER;
-	ret->value.number = std::make_unique<float>(std::stof(token.value));
+	ret->value.number = std::make_shared<float>(std::stof(token.value));
 	return ret;
 }
 
@@ -96,7 +96,7 @@ std::shared_ptr<Node>	Parser::_parseObject(const Token &token)
 
 	std::shared_ptr<Node>	ret = std::make_shared<Node>();
 	ret->type = Node::TYPES::OBJECT;
-	ret->value.object = std::make_unique<Object>();
+	ret->value.object = std::make_shared<Object>();
 	while (true)
 	{
 		cur = _tokenizer.getToken();
@@ -140,7 +140,7 @@ std::shared_ptr<Node>	Parser::_parseList(const Token &token)
 
 	std::shared_ptr<Node>	ret = std::make_shared<Node>();
 	ret->type = Node::TYPES::LIST;
-	ret->value.list = std::make_unique<List>();
+	ret->value.list = std::make_shared<List>();
 	while (true)
 	{
 		cur = _tokenizer.getToken();
@@ -173,7 +173,7 @@ std::shared_ptr<Node>	Parser::_parseBoolean(const Token &token)
 	if (token.value == "false")
 		val = false;			
 	ret->type = Node::TYPES::BOOLEAN;
-	ret->value.boolean = std::make_unique<bool>(val);
+	ret->value.boolean = std::make_shared<bool>(val);
 	return ret;
 }
 
