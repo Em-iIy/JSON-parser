@@ -106,7 +106,11 @@ NodePtr	Parser::_parseObject(const Token &token)
 		if (cur.type == TOKEN::END)
 			throw std::runtime_error("syntax error at: " + prev.value);
 		if (cur.type == TOKEN::OBJECT_CLOSE)
+		{
+			if (prev.type == TOKEN::COMMA)
+				throw std::runtime_error("syntax error at: `" + prev.value + "` - expected: `value` found: `" + TokenStrings.at(prev.type) + "`");
 			break ;
+		}
 		if (cur.type != TOKEN::STRING)
 			throw std::runtime_error("syntax error at: `" + prev.value + "` - expected: `" + TokenStrings.at(TOKEN::STRING) + "` found: `" + TokenStrings.at(cur.type) + "`");
 		key = cur.value;
@@ -150,7 +154,11 @@ NodePtr	Parser::_parseList(const Token &token)
 		if (cur.type == TOKEN::END)
 			throw std::runtime_error("syntax error at: " + prev.value);
 		if (cur.type == TOKEN::LIST_CLOSE)
+		{
+			if (prev.type == TOKEN::COMMA)
+				throw std::runtime_error("syntax error at: `" + prev.value + "` - expected: `value` found: `" + TokenStrings.at(prev.type) + "`");
 			break ;
+		}
 		
 		val = parse(cur);
 		if (val == nullptr)
