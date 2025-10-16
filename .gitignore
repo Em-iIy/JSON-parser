@@ -1,3 +1,4 @@
-jsp
+json-test
+*.a
 *.o
 .vscode/*

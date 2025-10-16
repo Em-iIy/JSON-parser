@@ -1,10 +1,16 @@
 # ----------------------------------------Name
-NAME = jsp
+NAME = libjson-parser.a
+
+# ----------------------------------------Test
+TEST = json-test
+
+TEST_SRCS =		main.cpp \
+				Jsp.cpp \
+
+TEST_FILES =	tests/*.json \
 
 # ----------------------------------------Files
-FILES_SRCS =	main.cpp \
-				Jsp.cpp \
-				Parser.cpp \
+FILES_SRCS =	Parser.cpp \
 				Token.cpp \
 				Node.cpp \
 
@@ -39,7 +45,7 @@ all:
 .PHONY: all
 
 $(NAME): $(DIR_OBJS) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(INC) $(LFLAGS)
+	ar -crs $(NAME) $(OBJS)
 
 $(DIR_OBJS)%.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@ $(INC) $(DFLAGS)
@@ -47,9 +53,19 @@ $(DIR_OBJS)%.o: %.cpp
 $(DIR_OBJS):
 	mkdir -p $@
 
+# ----------------------------------------Tests
+$(TEST): $(NAME) $(TEST_SRCS)
+	$(CC) src/main.cpp src/Jsp.cpp -o $(TEST) $(NAME) $(INC)
+.PHONY: test
+
+run-tests: $(TEST)
+	./$(TEST) $(TEST_FILES)
+.PHONY: run-tests
+
 # ----------------------------------------Cleaning
 clean:
 	rm -f $(OBJS)
+	rm -f $(TEST)
 .PHONY: clean
 
 fclean: clean

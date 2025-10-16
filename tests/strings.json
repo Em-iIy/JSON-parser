@@ -1,0 +1,12 @@
+{
+	"simple": "hello",
+	"with_spaces": "hello world",
+	"escaped_quotes": "He said, \"Hi!\"",
+	"backslashes": "C:\\\\Program Files\\\\App",
+	"escaped_chars": "Line1\\nLine2\\tTabbed",
+	"unicode": "Snowman: \u2603",
+	"emoji": "😊",
+	"empty": "",
+	"json_symbols": "{}[]:,",
+	"multi_line_escape": "Line1\\nLine2\\nLine3"
+}

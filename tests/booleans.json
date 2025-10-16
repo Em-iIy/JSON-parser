@@ -1,0 +1,9 @@
+{
+	"true_value": true,
+	"false_value": false,
+	"nested": {
+		"truth": true,
+		"lie": false
+	},
+	"array_mix": [true, false, true, false]
+}

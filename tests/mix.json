@@ -1,0 +1,22 @@
+{
+	"string": "hello world",
+	"number": -123.45e6,
+	"boolean": true,
+	"null": null,
+	"array": [
+		1,
+		"two",
+		false,
+		null,
+		[3, 4, 5],
+		{"nested": "object"}
+	],
+	"object": {
+		"name": "Example",
+		"values": [10, 20, 30],
+		"settings": {
+			"enabled": true,
+			"threshold": 0.001
+		}
+	}
+}

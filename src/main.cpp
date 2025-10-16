@@ -10,21 +10,7 @@ Created on: 14/10/2025
 
 int main(int argc, char **argv)
 {
-	if (argc != 2)
-		return (1);
-
-	try
-	{
-		JSON::Parser test(argv[1]);
-		JSON::NodePtr root = test.getRoot();
-		std::cout << root->stringify() << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-
-	Jsp parser;
+	Jsp parser(argc, argv);
 
 	parser.run();
 	return (0);

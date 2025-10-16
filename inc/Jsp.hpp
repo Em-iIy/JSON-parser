@@ -5,17 +5,18 @@ Created on: 14/10/2025
 
 #pragma once
 
+#include <vector>
 #include <string>
 
 class Jsp {
 	public:
-		Jsp();
+		Jsp(int argc, char **argv);
 		~Jsp();
 
 		void	run() noexcept;
 
 	private:
-		std::string	_message{};
+		std::vector<std::string>	_inputFiles;
 
-		void	_printMessage() const noexcept;
+		void	_parseFile(const std::string &filename, int testNo) const noexcept;
 };

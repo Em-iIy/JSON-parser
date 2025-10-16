@@ -1,0 +1,22 @@
+{
+	"empty": {},
+	"simple": {
+		"name": "Alice",
+		"age": 30
+	},
+	"nested": {
+		"outer": {
+			"inner": {
+				"key": "value"
+			}
+		}
+	},
+	"mixed": {
+		"string": "text",
+		"number": 42,
+		"bool": true,
+		"null": null,
+		"array": [1, 2, 3],
+		"object": {"a": 1}
+	}
+}
