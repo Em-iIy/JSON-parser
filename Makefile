@@ -7,7 +7,8 @@ TEST = json-test
 TEST_SRCS =		main.cpp \
 				Jsp.cpp \
 
-TEST_FILES =	tests/*.json \
+TEST_FILES =	tests/errors/*.json\
+				tests/*.json \
 
 # ----------------------------------------Files
 FILES_SRCS =	Parser.cpp \
