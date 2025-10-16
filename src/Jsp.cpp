@@ -40,6 +40,7 @@ void	Jsp::_parseFile(const std::string &filename, int testNo) const noexcept
 	{
 		JSON::Parser parsed(filename);
 		std::cout << GREEN << "OK" << RESET << " Test " << testNo << " " << filename << "\n";
+		// std::cout << parsed.getRoot()->stringify() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
