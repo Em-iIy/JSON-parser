@@ -18,6 +18,9 @@ Parser::Parser(const std::string &filename)try : _tokenizer(filename)
 	NodePtr	node = parse(cur);
 	if (_rootNode == nullptr)
 		_rootNode = node;
+	cur = _tokenizer.getToken();
+	if (cur.type != TOKEN::END)
+		throw std::runtime_error("syntax error at: `" + cur.value + "` - expected: `" + TokenStrings.at(TOKEN::END) + "` found: `" + TokenStrings.at(cur.type) + "`");
 }
 catch(const std::runtime_error &e)
 {
