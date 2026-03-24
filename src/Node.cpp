@@ -30,7 +30,6 @@ std::string	Node::stringify(int indent)
 	case TYPES::NULLED:
 		ret += "null";
 		break ;
-	
 	default:
 		break;
 	}

@@ -38,7 +38,7 @@ CFLAGS += -O3
 CFLAGS += -Wall -Wextra -Werror
 # CFLAGS += -g -fsanitize=address
 
-INC =  -Iinc
+INC = -Iinc
 
 # ----------------------------------------Making
 all:

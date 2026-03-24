@@ -79,7 +79,7 @@ NodePtr	Parser::_parseString(const Token &token)
 	NodePtr	ret = std::make_shared<Node>();
 	ret->type = Node::TYPES::STRING;
 	ret->value.string = std::make_shared<std::string>(token.value); // maybe do something else????
-	return ret;
+	return (ret);
 }
 
 NodePtr	Parser::_parseNumber(const Token &token)
@@ -87,15 +87,15 @@ NodePtr	Parser::_parseNumber(const Token &token)
 	NodePtr	ret = std::make_shared<Node>();
 	ret->type = Node::TYPES::NUMBER;
 	ret->value.number = std::make_shared<float>(std::stof(token.value));
-	return ret;
+	return (ret);
 }
 
 NodePtr	Parser::_parseObject(const Token &token)
 {
-	Token					prev = token;
-	Token					cur;
-	std::string				key = "";
-	NodePtr	val = nullptr;
+	Token		prev = token;
+	Token		cur;
+	std::string	key = "";
+	NodePtr		val = nullptr;
 
 	NodePtr	ret = std::make_shared<Node>();
 	ret->type = Node::TYPES::OBJECT;
@@ -136,13 +136,13 @@ NodePtr	Parser::_parseObject(const Token &token)
 			throw std::runtime_error("syntax error at: `" + prev.value + "` - expected: `" + TokenStrings.at(TOKEN::COMMA) + "` or `" + TokenStrings.at(TOKEN::OBJECT_CLOSE) + "` found: `" + TokenStrings.at(cur.type) + "`");
 		prev = cur;
 	}
-	return ret;
+	return (ret);
 }
 
 NodePtr	Parser::_parseList(const Token &token)
 {
-	Token					prev = token;
-	Token					cur;
+	Token	prev = token;
+	Token	cur;
 	NodePtr	val = nullptr;
 
 	NodePtr	ret = std::make_shared<Node>();
@@ -159,7 +159,7 @@ NodePtr	Parser::_parseList(const Token &token)
 				throw std::runtime_error("syntax error at: `" + prev.value + "` - expected: `value` found: `" + TokenStrings.at(prev.type) + "`");
 			break ;
 		}
-		
+
 		val = parse(cur);
 		if (val == nullptr)
 			throw std::runtime_error("syntax error at: `" + prev.value + "` - expected: `value` found: `" + TokenStrings.at(cur.type) + "`");
@@ -174,7 +174,7 @@ NodePtr	Parser::_parseList(const Token &token)
 			throw std::runtime_error("syntax error at: `" + prev.value + "` - expected: `" + TokenStrings.at(TOKEN::COMMA) + "` or `" + TokenStrings.at(TOKEN::LIST_CLOSE) + "` found: `" + TokenStrings.at(cur.type) + "`");
 		prev = cur;
 	}
-	return ret;
+	return (ret);
 }
 
 NodePtr	Parser::_parseBoolean(const Token &token)
@@ -182,10 +182,10 @@ NodePtr	Parser::_parseBoolean(const Token &token)
 	NodePtr	ret = std::make_shared<Node>();
 	bool					val = true;
 	if (token.value == "false")
-		val = false;			
+		val = false;
 	ret->type = Node::TYPES::BOOLEAN;
 	ret->value.boolean = std::make_shared<bool>(val);
-	return ret;
+	return (ret);
 }
 
 NodePtr	Parser::_parseNull()
@@ -193,7 +193,7 @@ NodePtr	Parser::_parseNull()
 	NodePtr	ret = std::make_shared<Node>();
 	ret->type = Node::TYPES::NULLED;
 	ret->value.boolean = nullptr;
-	return ret;
+	return (ret);
 }
 
 }

@@ -46,5 +46,4 @@ void	Jsp::_parseFile(const std::string &filename, int testNo) const noexcept
 	{
 		std::cout << RED << "KO" << RESET << " Test " << testNo << " " << filename << ":"<< e.what() << "\n";
 	}
-	
 }

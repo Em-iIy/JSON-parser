@@ -23,7 +23,7 @@ Token	Tokenizer::getToken()
 	char			peek;
 	Token			ret;
 	// std::streampos	start = _file.tellg();
-	
+
 	_file.get(c);
 	if (_file.eof())
 		return (ret); // end of file token by default

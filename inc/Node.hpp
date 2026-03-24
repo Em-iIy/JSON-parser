@@ -36,7 +36,7 @@ class Node {
 		Values					value; // make private
 
 		std::string				stringify(int indent = 0);
-	
+
 		Node::TYPES				getType() const;
 
 		std::string				getString();
@@ -61,11 +61,11 @@ class Node {
 };
 
 const std::map<Node::TYPES, std::string> TypeStrings {
-	{Node::TYPES::STRING, "STRING"}, 
-	{Node::TYPES::NUMBER, "NUMBER"}, 
-	{Node::TYPES::OBJECT, "OBJECT"}, 
-	{Node::TYPES::LIST, "LIST"}, 
-	{Node::TYPES::BOOLEAN, "BOOLEAN"}, 
+	{Node::TYPES::STRING, "STRING"},
+	{Node::TYPES::NUMBER, "NUMBER"},
+	{Node::TYPES::OBJECT, "OBJECT"},
+	{Node::TYPES::LIST, "LIST"},
+	{Node::TYPES::BOOLEAN, "BOOLEAN"},
 	{Node::TYPES::NULLED, "NULLED"},
 };
 
